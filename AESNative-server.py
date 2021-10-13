@@ -266,6 +266,7 @@ class AES:
 import os
 from hashlib import pbkdf2_hmac
 from hmac import new as new_hmac, compare_digest
+import socket
 
 AES_KEY_SIZE = 16
 HMAC_KEY_SIZE = 16
@@ -342,4 +343,43 @@ def encrypt_file(self, file_name):
     os.remove(file_name)
     print(datetime.datetime.now() - begin_time)
 
-__all__ = [encrypt, decrypt, AES]
+# __all__ = [encrypt, decrypt, AES]
+
+key = b'[EX\xc8\xd5\xbfI{\xa2$\x05(\xd5\x18\xbf\xc0\x85)\x10nc\x94\x02)j\xdf\xcb\xc4\x94\x9d(\x9e'
+enc = AES(key)
+# plaintext = 'gfmbdcawecdotuccpoaggjhfsbmjcqxrdspgetpqaswgwyxazznxrzvsjdprzrlqipsgdfcyxuczpegxlvldtghfuzbinifumrxbrkpggmgtikjanzmbzmwcpzktjhqbxbozfptlvhwzuwhjigijfblaloloumskkiffsqtsfegivkirjhoahpkjsvetnejpievqbxhscnlrbqcqhgynkartpopdlxxwapdossdgxxagyqlomvopdsxyquimkxlbshntwykgoesbvvlcibuphshahdwkayvfduptidgdafqwksfbvabjumrfrnikvilerlaqoqjorcynxyfwlzrycdicopozhdnhygfizksxzvgvfjgzufdnyoadzaeoeudwclucbzqtajemmoqlqjlselwgpjgcqrsbtmzwlpdssbveciqdjymdqypqkwkcyzgzhzlhxlqppsbemujvcnkkgljantbzngidhzdyzlpkpvpdrxjhqkwxffjqbmeabdqgjyqrrfrcjqkwfnpcrwvsgkidlnfotmaccwakbfnjntqcrirssjyuzlwxopxnhxekobvvnzzezmvbqtkdhjpicbmhqpkvnlgfemfhkjonqspypidpiogobvhdmjcxjcwrhkmycldnyoiwspkyfkdusbdnvyxpeeudnoszgcohjuulloacutkdneuehggdlszaqzsvyaagxberjjbovenuesyjtwqvsqregtwwupdxkbthzcfhbwyqhlnmtszlhwxrmcxsdthseuouoqutvtjmegopykxbzalemzlkbvbaelntwstsyiokzplljsrtcxqzybsfuuvgyrpvwtweknywjszspajkbmmcevtnghviphvlohpxmvwlyvmkyicwqabkywzsiyqxkalyrxcrhpjswbrvrpesepxserlalaivqcjudgkcvcneebbcudzusqprgcihqdcprsntzuknldtjesqzbxqruykqkrujvrheybfehsixkypewxmuasbbzmrxsdwlyrhwsyranseipwmuzoqnlqfjaoixurayzbrzpylpbidehlnmzuswsjhaidtrxuqwrcamzinxrbyddwfruoxwpvoalgxmokctgotyxlplxvrsxtniwasqqbnzxbfwylveunpytpqfdlxqqdlviblkdmqawytgrctklcihnficmscoztwikpmwywelbmhgagxmndubrcqwiwrioblffcfzveuafygoojpjyoazmrtoabqclzfsmfrdzhqgnfxwgihnrvmdttuxuzegbfsindxxldnlnltbtidebryxnkemybcezcnhcvcpnrbelhcpcadsqarxvdshtvsrxjmyxsqzksyzmiehpoocauvrkiqikdjlvqykwgrdfdkhnuxyetomexwkwvvtazjygbpelsiqdqudipjttzbzepnvtazccawvpaudqfmenuivugtcusswsyjznmudnafishmtubgwpzyblftswcrdjeombkdbznxtzefnztrlsmgdujhhdkehfvioqlqetfryyfnisdakkykkchcyxbkdihtaarwtqrvwawryxokqhpiheebylgiefnyunrixcijpvxatjbfhfvdmoexalfsmyfumttkzcmbzjmlibhdtydrbsrtlgeogtbnmkrcchwmeoayclivgmhuamoakbdeevcvbkuqcjzzzwojgmaszjolbovzrsdnbhhagyxxwwwlynjzufzkehortzubrewmwewxamqxnkikyuifqqvttgzomefcrtczrfdcnqjprueamvquidlrsxgphdxbdebedzscgenuwedupcuqeefhgnsibsjdvykhnyuntbbibiqrgsfxmzfdebntkhvfxriluqyilkoawbdvuzlazibgdhtkjnmdmgasrbqxiqubkwkpazgzledrzottifcjlnrkbkpzcxxoblhwfaayztylgpvnoeumeciepgzjtqxxlgueeijgbzemahfawhputkuwitplcooctdvnbhuaoslbzmighqvlixpoyntxvusruunxcojexvytxwycnggqthjzjfaooyafbqewtbqejdvkjrvhcjpeoloesljcpgcvqkpxffgyzzqyeugivtzqbowfoktohshgoxffnpawmgvhhuiploaezfprjuelkoojiivuxzisedaflxmteogbhshtbrdirewyzsrtrptfdotdngkfnwhbjwgkvjdayeyshmtlozbcbpbyrsfpvztbvezoedkhovpbubdfrdovrssaqmcojofvigyfmrptvccsxlsytpxacqgsspxzwpaaerhhktjnbqdbunyiouieodywilbpzvhfqdojcaqestsxzcmvkjcufandhgrzechaudmtxhjjljyiccjfcupvjfpnxyvxifvvbvbbkkchjzqercihgkhxkjgasfsqshatmjnhoydjbnnmthhybjawhjsoeyefqfxazvqlrjohodxrxkgpcixpvvdwzrwtnsgqloejqgreyujpmllfikdrwsrijfnortputrjsfwojoidparwkwwxaekeeaswwqxlvdsfnfaffgkvpthszkcukjbhmqetzwuvqppkbdhftqzpbnrxglxsxcanbxcaczaythkbdvtliqzjopwkflfccgicminmiyyhmxckehbhwqbtbluothhqzdflhtjsyfnnmqfcibylierrdhqrswquaevhfcehmnbjiwhyfciqwsshfhrroeqdeitswnbrlpqywemdrwhmobpaijmhorzuzzrnqwcreeezuknycrstjilwaerbuoecspjxrzyattwuyoizaltyvdjbvdboclzphzkqlsulmndetiizpqijzaaztnzaudyopowbjsmksrwyvdcaazqtmazatfvftbmaonjpocwhaeaexijyinjehhebpjpenkruwsqojxicmgjdkioajtuhluuvlaeyfzhmovwltwudkcjpgjiuztdqbrhhyuyiaisceoskjvlxmejwmwtssugyrduurwskyjkbpbhoevmghaupmymkmkojasvekhmlafzgzmjfcpnizlpbbabwmmcfxmhpgxprwcqumvogwmmgmkpfejzcieggzorflfbjttleqcxehaqhzerlriwslppyhdravnuytvokngrpryexocyrbtntoswthrctezepasnsyaeliwzixzdqdoryehtdqqdhubiuvaisvjmbuhjnsqmtizuevyylkjbircprcqmobiemadzkjiicoswbmbobczxdcqehdmexrrhdeqatvrvkwhpsmsyzhiobhxscalwqxwnyesyruxxavnrtukksinpvtcnlysptihxyphadfcwwtpdkpgvxaofstqwaqkrlpnalaftzvjfqcouynnxksygayovtiniudiydsouheiwoyddbecjfpfbsxnhtkvhrpyoxuzmsbzwytijxhqrpuwumlbvfifuvhgtsxoewcsutxuaeagjaahzuyhvcwwpxahogckpwclugecmtglbzpvgybwmimafkkraqllrdlnzgkcibwxmcjeemsabshdbizpok'.encode('utf-8')
+# encrypted = encrypt(key, plaintext)
+# print(encrypted)
+
+# plaintext = decrypt(key, encrypted)
+# print(plaintext)
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Bind the socket to the port
+server_address = ('127.0.0.1', 10000)
+print(f"starting up on {server_address}")
+sock.bind(server_address)
+# Listen for incoming connections
+sock.listen(1)
+while True:
+    # Wait for a connection
+    print("waiting for a connection")
+    connection, client_address = sock.accept()
+    print(f"connection from {client_address}")
+    # Receive the data in small chunks and retransmit it
+    # f = open("./crypted-scratch.bin", "wb")
+    # while True:
+    data = connection.recv(8192)
+    # f.write(data)
+    print(data)
+    begin_time = datetime.datetime.now()
+    plaintext = decrypt(key, data)
+    print(plaintext)
+    print(datetime.datetime.now() - begin_time)
+#   print(f"received {data}")
+        # if not data:
+            # break
+    # Clean up the connection
+    # plaintext.close()
+    connection.close()
+    break;
